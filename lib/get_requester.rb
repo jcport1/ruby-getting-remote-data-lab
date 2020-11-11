@@ -5,20 +5,20 @@ require 'json'
 
 class GetRequester
 
-  attr_accessor :URL
+  attr_accessor :URL #reader/writer method for class to be able to call and edit URL instance
 
-  def initialize(url)
+  def initialize(url) #initialize the Getrequester class by passing in URL
 
     @url = url
 
   end 
 
-#   def initialize 
-#     get_requester = GetRequester.new(URL)
-#   end
-
   
-  def get_response_body
+  def get_response_body #instance method on the GetRequester Class
+
+    #copied & pasted from previous lab
+    #essential this is the "vocabulary" to use to be able to make a request to the URL provided on initialization
+    #also returns the request body 
 
     uri = URI.parse(URL)
     response = Net::HTTP.get_response(uri)
@@ -26,8 +26,8 @@ class GetRequester
 
     end 
 
-    def parse_json
-        request = JSON.parse(self.get_response_body)
+    def parse_json #instance method that allows to convern JSON returned from get_response_body in Ruby data data structure
+        JSON.parse(self.get_response_body)
     end 
 
 end 
